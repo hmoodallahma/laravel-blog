@@ -5,6 +5,7 @@ namespace Tests\Feature\Api\V1;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -174,7 +175,7 @@ class PostTest extends TestCase
     public function testStorePost()
     {
         $params = $this->validParams();
-
+        $categories = Category::factory(5)->create();
         $this->actingAsAdmin('api')
             ->json('POST', '/api/v1/posts/', $params)
             ->assertCreated();

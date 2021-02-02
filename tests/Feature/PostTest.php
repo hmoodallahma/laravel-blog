@@ -73,9 +73,9 @@ class PostTest extends TestCase
         // Test that a newly created post can be assigned a category
 
         $user = User::factory()->create();
-
-        $post = Post::factory()->create(['author_id' => $user->id]);
         $category = Category::factory()->create();
+        $post = Post::factory()->create(['author_id' => $user->id]);
+        
         $post->categories->add($category);
 
         $this->assertNotEmpty($post->categories);
@@ -86,9 +86,9 @@ class PostTest extends TestCase
         // Test that posts can have multiple categoroes
 
         $user = User::factory()->create();
-
-        $post = Post::factory()->create(['author_id' => $user->id]);
         $categories = Category::factory(5)->create();
+        $post = Post::factory()->create(['author_id' => $user->id]);
+        
         $post->categories()->saveMany($categories);
 
         $this->assertEquals($post->categories->count(), 5);

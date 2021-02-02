@@ -6,7 +6,7 @@
     @include('admin/posts/_thumbnail')
 
     {!! Form::model($post, ['route' => ['admin.posts.update', $post], 'method' =>'PUT']) !!}
-        @include('admin/posts/_form')
+        @include('admin/posts/_editform')
 
         <div class="pull-left">
             {{ link_to_route('admin.posts.index', __('forms.actions.back'), [], ['class' => 'btn btn-secondary']) }}
@@ -18,3 +18,5 @@
         {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> ' . __('posts.delete'), ['class' => 'btn btn-link text-danger', 'name' => 'submit', 'type' => 'submit']) !!}
     {!! Form::close() !!}
 @endsection
+
+

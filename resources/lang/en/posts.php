@@ -26,12 +26,14 @@ return [
     'posted_at' => 'Posted at',
     'description' => 'Description',
     'thumbnail' => "Thumbnail image",
+    'categories' => 'Categories',
   ],
 
   'placeholder' => [
     'title' => 'Your title',
     'content' => 'Your content',
     'description' => 'A brief description',
-    'thumbnail' => 'Choose a thumbnail'
+    'thumbnail' => 'Choose a thumbnail',
+    'categories' => 'Choose applicable category',
   ]
 ];
