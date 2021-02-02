@@ -31,6 +31,7 @@ class PostsRequest extends FormRequest
         $this->merge([
             'posted_at' => Carbon::parse($this->input('posted_at'))
         ]);
+
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\PostsRequest;
 use App\Models\MediaLibrary;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -31,7 +32,8 @@ class PostController extends Controller
         return view('admin.posts.edit', [
             'post' => $post,
             'users' => User::authors()->pluck('name', 'id'),
-            'media' => MediaLibrary::first()->media()->get()->pluck('name', 'id')
+            'media' => MediaLibrary::first()->media()->get()->pluck('name', 'id'),
+            'categories' => Category::all()->pluck('name', 'id'),
         ]);
     }
 
@@ -42,7 +44,8 @@ class PostController extends Controller
     {
         return view('admin.posts.create', [
             'users' => User::authors()->pluck('name', 'id'),
-            'media' => MediaLibrary::first()->media()->get()->pluck('name', 'id')
+            'media' => MediaLibrary::first()->media()->get()->pluck('name', 'id'),
+            'categories' => Category::all()->pluck('name', 'id'),
         ]);
     }
 
