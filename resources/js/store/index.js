@@ -43,7 +43,7 @@ export const store = new Vuex.Store({
           context.errors = error.response
         })
     },
-   search_posts (context) {
+   searchPosts (context) {
       axios.get(`${this.state.endpoints.getPosts}`)
         .then((response) => {
           console.log(response)

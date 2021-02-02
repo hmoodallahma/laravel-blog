@@ -1,6 +1,7 @@
 import CommentForm from './components/comments/CommentForm'
 import CommentList from './components/comments/CommentList'
 import Vue from 'vue'
+import { store } from './store'
 
 Vue.config.productionTip = false
 
