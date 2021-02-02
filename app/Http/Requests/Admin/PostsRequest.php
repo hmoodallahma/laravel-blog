@@ -41,6 +41,7 @@ class PostsRequest extends FormRequest
         return [
             'title' => 'required',
             'content' => 'required',
+            'description' => 'required',
             'posted_at' => 'required|date',
             'thumbnail_id' => 'nullable|exists:media,id',
             'author_id' => ['required', 'exists:users,id', new CanBeAuthor],
