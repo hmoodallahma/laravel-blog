@@ -19,4 +19,16 @@ class UserPostController extends Controller
             $user->posts()->latest()->paginate($request->input('limit', 10))
         );
     }
+
+     public function search_posts(Request $request): ResourceCollection
+    {
+        return PostResource::collection(
+            Post::search($request->input('q'))->with('categories')->withCount('comments')->latest()->paginate($request->input('limit', 10))
+        );
+    }
+
+     public function show(Post $post): PostResource
+    {
+        return new PostResource($post);
+    }
 }

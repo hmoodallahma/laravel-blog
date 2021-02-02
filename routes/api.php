@@ -42,7 +42,7 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
     Route::apiResource('users.posts', 'UserPostController')->only('index');
 
     // Users
-    Route::apiResource('users', 'UserController')->only(['index', 'show']);
+    Route::apiResource('user_posts', 'UserController')->only(['index', 'show','search_posts']);
 
     // Media
     Route::apiResource('media', 'MediaController')->only('index');
