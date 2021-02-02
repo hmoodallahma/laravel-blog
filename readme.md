@@ -111,10 +111,6 @@ $ artisan vendor:publish --provider="Spatie\Backup\BackupServiceProvider"
 $ artisan backup:run
 ```
 
-Generating fake data :
-```bash
-$ artisan db:seed --class=DevDatabaseSeeder
-```
 
 Discover package
 ```bash
