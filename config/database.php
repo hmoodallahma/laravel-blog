@@ -62,7 +62,15 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
-
+        'testing' => [
+            'driver' => 'sqlite',
+            'database' => env('DB_DATABASE', 'forge'),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'strict' => false,
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', false),
+        ],
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
