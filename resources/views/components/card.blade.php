@@ -6,6 +6,13 @@
         </div>
     @endif
 
+    @if (isset($description))
+        <div class="card-header">
+            {{ $description }}
+        </div>
+    @endif
+
+
     <div class="card-body">
         {{ $slot }}
     </div>

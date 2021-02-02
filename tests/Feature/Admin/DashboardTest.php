@@ -22,13 +22,9 @@ class DashboardTest extends TestCase
         $this->actingAsAdmin()
             ->get('/admin/dashboard')
             ->assertOk()
-            ->assertSee('This week')
             ->assertSee('Details')
             ->assertSee('4')
             ->assertSee('new posts')
-            ->assertSee('9')
-            ->assertSee('new users')
-            ->assertSee('2')
             ->assertSee('new comments');
     }
 }

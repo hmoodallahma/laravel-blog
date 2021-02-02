@@ -23,6 +23,7 @@ class PostTest extends TestCase
                 'data' => [[
                         'id',
                         'title',
+                        'description',
                         'slug',
                         'content',
                         'posted_at',
@@ -58,6 +59,7 @@ class PostTest extends TestCase
                 'data' => [[
                     'id',
                     'title',
+                    'description',
                     'slug',
                     'content',
                     'posted_at',
@@ -98,7 +100,8 @@ class PostTest extends TestCase
     {
         $post = Post::factory()->create([
             'title' => 'The Empire Strikes Back',
-            'content' => 'A Star Wars Story'
+            'content' => 'A Star Wars Story',
+            'description' => 'OMG WOWWW',
         ]);
         Comment::factory()->count(2)->create(['post_id' => $post->id]);
 
@@ -109,6 +112,7 @@ class PostTest extends TestCase
                     'id',
                     'title',
                     'slug',
+                    'description',
                     'content',
                     'posted_at',
                     'author_id',
@@ -121,6 +125,7 @@ class PostTest extends TestCase
                     'title' => 'The Empire Strikes Back',
                     'slug' => 'the-empire-strikes-back',
                     'content' => 'A Star Wars Story',
+                    'description' => 'OMG WOWWW',
                     'posted_at' => $post->posted_at->toIso8601String(),
                     'author_id' => $post->author_id,
                     'comments_count' => 2
@@ -151,6 +156,7 @@ class PostTest extends TestCase
         $this->assertDatabaseHas('posts', $params);
         $this->assertEquals($params['title'], $post->title);
         $this->assertEquals($params['content'], $post->content);
+        $this->assertEquals($params['description'], $post->description);
     }
 
     public function testUpdateFail()
@@ -223,6 +229,7 @@ class PostTest extends TestCase
         return array_merge([
             'title' => 'Star Trek ?',
             'content' => 'Star Wars.',
+            'description' => 'STAR WARRRS',
             'posted_at' => Carbon::yesterday()->format('Y-m-d\TH:i'),
             'author_id' => $this->admin()->id,
         ], $overrides);

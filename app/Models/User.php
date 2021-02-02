@@ -126,14 +126,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Comment::class, 'author_id');
     }
 
-    /**
-     * Return the user's likes
-     */
-    public function likes(): HasMany
-    {
-        return $this->hasMany(Like::class, 'author_id');
-    }
-
+   
     /**
      * Return the user's roles
      */

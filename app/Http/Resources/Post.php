@@ -15,9 +15,11 @@ class Post extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'slug' => $this->slug,
+            'description' => $this->description,
             'content' => $this->content,
             'posted_at' => $this->posted_at->toIso8601String(),
             'author_id' => $this->author_id,
+            'categories' => Category::collection($this->categories),
             'comments_count' => $this->comments_count ?? $this->comments()->count(),
             'thumbnail_url' => $this->when($this->hasThumbnail(), url(optional($this->thumbnail)->getUrl())),
             'thumb_thumbnail_url' => $this->when($this->hasThumbnail(), url(optional($this->thumbnail)->getUrl('thumb')))

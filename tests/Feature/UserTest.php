@@ -27,7 +27,6 @@ class UserTest extends TestCase
             ->assertSee('Comments')
             ->assertSee('Posts')
             ->assertSee('3')
-            ->assertSee('Like')
             ->assertSee('Latest comments')
             ->assertSee($comment->content)
             ->assertSee('Latest posts')

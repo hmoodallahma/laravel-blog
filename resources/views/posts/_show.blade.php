@@ -7,7 +7,7 @@
 
   <div class="card-body">
     <h4 v-pre class="card-title">{{ link_to_route('posts.show', $post->title, $post) }}</h4>
-
+    <h5 v-pre>{{ $post->description }}</h5>
     <p class="card-text"><small v-pre class="text-muted">{{ link_to_route('users.show', $post->author->fullname, $post->author) }}</small></p>
 
     <p class="card-text">

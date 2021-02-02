@@ -18,7 +18,6 @@ class ShowDashboard extends Controller
         return view('admin.dashboard.index', [
             'comments' =>  Comment::lastWeek()->get(),
             'posts' => Post::lastWeek()->get(),
-            'users' => User::lastWeek()->get(),
         ]);
     }
 }

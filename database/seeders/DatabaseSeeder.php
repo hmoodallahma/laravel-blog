@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'posted_at' => now(),
-                'description' => $this->faker->sentence,
+                'description' => 'This is my cool post',
                 'content' => "
                     Welcome to Laravel-blog !<br><br>
                     Don't forget to read the README before starting.<br><br>
@@ -51,6 +51,16 @@ class DatabaseSeeder extends Seeder
                     You can open an issue or (better) a PR if something went wrong."
             ]
         );
+        //Create required categories
+        \DB::table('categories')->insert([
+            ['name' => 'General'],
+            ['name' => 'Technology'],
+            ['name' => 'Press Release'],
+            ['name' => 'Culture'],
+            ['name' => 'Reviews'],
+        ]);
+
+        //Create 50 fake posts
         Post::factory(50)->create();
 
         // Comments

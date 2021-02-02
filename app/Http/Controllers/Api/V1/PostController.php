@@ -18,7 +18,7 @@ class PostController extends Controller
     public function index(Request $request): ResourceCollection
     {
         return PostResource::collection(
-            Post::search($request->input('q'))->withCount('comments')->latest()->paginate($request->input('limit', 20))
+            Post::search($request->input('q'))->withCount('comments')->latest()->paginate($request->input('limit', 10))
         );
     }
 
@@ -29,7 +29,7 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
 
-        $post->update($request->only(['title', 'content', 'posted_at', 'author_id', 'thumbnail_id']));
+        $post->update($request->only(['title', 'description','content', 'posted_at', 'author_id', 'thumbnail_id']));
 
         return new PostResource($post);
     }
@@ -42,7 +42,7 @@ class PostController extends Controller
         $this->authorize('store', Post::class);
 
         return new PostResource(
-            Post::create($request->only(['title', 'content', 'posted_at', 'author_id', 'thumbnail_id']))
+            Post::create($request->only(['title', 'description', 'content', 'posted_at', 'author_id', 'thumbnail_id']))
         );
     }
 

@@ -10,7 +10,14 @@
         <span class="invalid-feedback">{{ $message }}</span>
     @enderror
 </div>
+<div class="form-group">
+    {!! Form::label('description', __('posts.attributes.description')) !!}
+    {!! Form::text('description', null, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'required']) !!}
 
+    @error('description')
+        <span class="invalid-feedback">{{ $message }}</span>
+    @enderror
+</div>
 <div class="form-row">
     <div class="form-group col-md-6">
         {!! Form::label('author_id', __('posts.attributes.author')) !!}

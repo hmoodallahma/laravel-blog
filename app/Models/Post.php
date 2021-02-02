@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    use HasFactory, Likeable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -49,15 +49,28 @@ class Post extends Model
         static::addGlobalScope(new PostedScope);
     }
 
+    /** Return related categories
+    **/
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
     /**
      * Set slug when title is entered.
      */
 
     public function setTitleAttribute($value)
     {
+
         $this->attributes['title'] = $value;
-        $this->attributes['slug'] = Str::slug($value,'-');
+        if($this->slug == '')
+        {
+            $this->attributes['slug'] = Str::slug($value,'-');
+        }
+        
     }
+
+
     /**
      * Prepare a date for array / JSON serialization.
      */
@@ -86,7 +99,7 @@ class Post extends Model
         if ($search) {
             return $query
                         ->where('title', 'LIKE', "%{$search}%")
-                        ->orWhere('description', 'like', "%{$search}%");
+                        ->orWhere('description', 'LIKE', "%{$search}%");
         }
     }
 
@@ -146,7 +159,7 @@ class Post extends Model
      */
     public function excerpt(int $length = 50): string
     {
-        return Str::limit($this->content, $length);
+        return Str::limit($this->description, $length);
     }
 
     /**
@@ -156,4 +169,6 @@ class Post extends Model
     {
         return filled($this->thumbnail_id);
     }
+
+
 }

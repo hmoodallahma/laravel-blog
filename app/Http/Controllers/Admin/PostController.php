@@ -19,7 +19,7 @@ class PostController extends Controller
     public function index(): View
     {
         return view('admin.posts.index', [
-            'posts' => Post::withCount('comments', 'likes')->with('author')->latest()->paginate(50)
+            'posts' => Post::withCount('comments')->with('author')->latest()->paginate(10)
         ]);
     }
 
@@ -51,7 +51,7 @@ class PostController extends Controller
      */
     public function store(PostsRequest $request): RedirectResponse
     {
-        $post = Post::create($request->only(['title', 'content', 'posted_at', 'author_id', 'thumbnail_id']));
+        $post = Post::create($request->only(['title', 'description', 'content', 'posted_at', 'author_id', 'thumbnail_id']));
 
         return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.created'));
     }
@@ -61,15 +61,15 @@ class PostController extends Controller
      */
     public function update(PostsRequest $request, Post $post): RedirectResponse
     {
-        $post->update($request->only(['title', 'content', 'posted_at', 'author_id', 'thumbnail_id']));
-
+        $post->update($request->only(['title', 'description', 'content', 'posted_at', 'author_id', 'thumbnail_id']));
+        \Log::debug($request->all());
         return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.updated'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post  $post)
+    public function destroy(Post $post)
     {
         $post->delete();
 

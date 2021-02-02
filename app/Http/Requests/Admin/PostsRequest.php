@@ -48,4 +48,5 @@ class PostsRequest extends FormRequest
             'slug' => 'unique:posts,slug,' . (optional($this->post)->id ?: 'NULL'),
         ];
     }
+
 }

@@ -36,6 +36,7 @@ class PostTest extends TestCase
             ->assertOk()
             ->assertSee('Create post')
             ->assertSee('Title')
+            ->assertSee('Description')
             ->assertSee('Author')
             ->assertSee('Posted at')
             ->assertSee('Content')
@@ -95,6 +96,7 @@ class PostTest extends TestCase
 
         $response->assertRedirect("/admin/posts/{$post->slug}/edit");
 
+        \Log::debug($response->getContent());
         $this->assertDatabaseHas('posts', $params);
         $this->assertEquals($params['content'], $post->content);
     }
@@ -110,10 +112,10 @@ class PostTest extends TestCase
                 $comment->save();
             });
 
-        $this->actingAsAdmin()
+        $response = $this->actingAsAdmin()
             ->delete("/admin/posts/{$post->slug}")
             ->assertStatus(302);
-
+        
         $this->assertDatabaseMissing('posts', $post->toArray());
         $this->assertTrue(Comment::all()->isEmpty());
     }
@@ -129,6 +131,7 @@ class PostTest extends TestCase
         return array_merge([
             'title' => 'hello world',
             'content' => "I'm a content",
+            'description' => "I'm a description",
             'posted_at' => now()->format('Y-m-d\TH:i'),
             'author_id' => $this->admin()->id,
         ], $overrides);
