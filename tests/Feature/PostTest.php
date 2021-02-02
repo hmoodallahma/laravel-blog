@@ -6,6 +6,7 @@ use App\Models\Comment;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -66,4 +67,31 @@ class PostTest extends TestCase
             ->assertOk()
             ->assertSee('You must be signed in to comment.');
     }
+
+    public function test_posts_can_have_category()
+    {
+        // Test that a newly created post can be assigned a category
+
+        $user = User::factory()->create();
+
+        $post = Post::factory()->create(['author_id' => $user->id]);
+        $category = Category::factory()->create();
+        $post->categories->add($category);
+
+        $this->assertNotEmpty($post->categories);
+    }
+
+        public function test_post_can_have_categories()
+    {
+        // Test that posts can have multiple categoroes
+
+        $user = User::factory()->create();
+
+        $post = Post::factory()->create(['author_id' => $user->id]);
+        $categories = Category::factory(5)->create();
+        $post->categories()->saveMany($categories);
+
+        $this->assertEquals($post->categories->count(), 5);
+    }
+
 }
