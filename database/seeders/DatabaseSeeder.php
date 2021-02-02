@@ -25,10 +25,10 @@ class DatabaseSeeder extends Seeder
 
         // Users
         $user = User::firstOrCreate(
-            ['email' => 'darthvader@deathstar.ds'],
+            ['email' => 'bob@bob.com'],
             [
-                'name' => 'anakin',
-                'password' => Hash::make('4nak1n'),
+                'name' => 'aisha',
+                'password' => Hash::make('bobrules'),
                 'email_verified_at' => now()
             ]
         );
@@ -43,6 +43,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'posted_at' => now(),
+                'description' => $this->faker->sentence,
                 'content' => "
                     Welcome to Laravel-blog !<br><br>
                     Don't forget to read the README before starting.<br><br>
@@ -50,6 +51,7 @@ class DatabaseSeeder extends Seeder
                     You can open an issue or (better) a PR if something went wrong."
             ]
         );
+        Post::factory(50)->create();
 
         // Comments
         Comment::firstOrCreate(
