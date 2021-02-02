@@ -26,6 +26,7 @@ class Bootstrap implements BeforeFirstTestHook, AfterLastTestHook
         $console = $this->createApplication()->make(Kernel::class);
 
         $commands = [
+            // 'migrate:refresh',
             'config:cache',
             'event:cache',
         ];
