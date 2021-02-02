@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<p class="mt-3 small">
+      {{ link_to_route('home', '< See all posts ' , [], []) }}
+    </p>
   <div class="bg-white p-3 post-card">
     @if ($post->hasThumbnail())
       {{ Html::image($post->thumbnail->getUrl(), $post->thumbnail->name, ['class' => 'card-img-top']) }}
@@ -18,8 +21,7 @@
       {!! $post->content !!}
     </div>
 
-    <p class="mt-3">
-    </p>
+    
   </div>
 
   @include ('comments/_list')
