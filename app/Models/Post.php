@@ -25,6 +25,7 @@ class Post extends Model
         'author_id',
         'title',
         'content',
+        'description',
         'posted_at',
         'slug',
         'thumbnail_id',
@@ -48,6 +49,15 @@ class Post extends Model
         static::addGlobalScope(new PostedScope);
     }
 
+    /**
+     * Set slug when title is entered.
+     */
+
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = $value;
+        $this->attributes['slug'] = Str::slug($value,'-');
+    }
     /**
      * Prepare a date for array / JSON serialization.
      */
@@ -74,7 +84,9 @@ class Post extends Model
     public function scopeSearch(Builder $query, ?string $search)
     {
         if ($search) {
-            return $query->where('title', 'LIKE', "%{$search}%");
+            return $query
+                        ->where('title', 'LIKE', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%");
         }
     }
 
