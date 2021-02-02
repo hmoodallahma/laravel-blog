@@ -1,6 +1,5 @@
 import CommentForm from './components/comments/CommentForm'
 import CommentList from './components/comments/CommentList'
-import Like from './components/Like'
 import Vue from 'vue'
 
 Vue.config.productionTip = false
@@ -12,8 +11,7 @@ new Vue({
 
   components: {
     CommentForm,
-    CommentList,
-    Like
+    CommentList
   },
 
   mounted () {

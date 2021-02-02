@@ -14,15 +14,12 @@
               {{ $comments_count }}
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
               <span class="text-muted d-block">@lang('posts.posts')</span>
               {{ $posts_count }}
             </div>
 
-            <div class="col-md-4">
-              <span class="text-muted d-block">@lang('likes.likes')</span>
-              {{ $likes_count }}
-            </div>
+            
           </div>
 
           @profile($user)
