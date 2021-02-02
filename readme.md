@@ -1,7 +1,6 @@
-# Laravel 8.0 blog
+# Laravel 8.9 blog
 
-[![Build Status](https://travis-ci.org/guillaumebriday/laravel-blog.svg?branch=master)](https://travis-ci.org/guillaumebriday/laravel-blog)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/guillaumebriday)
+This project is a fork of https://github.com/guillaumebriday/laravel-blog/
 
 The purpose of this repository is to show good development practices on [Laravel](http://laravel.com/) as well as to present cases of use of the framework's features like:
 
@@ -51,8 +50,8 @@ Development environment requirements :
 
 Setting up your development environment on your local machine :
 ```bash
-$ git clone https://github.com/guillaumebriday/laravel-blog.git
-$ cd laravel-blog
+$ git clone https://github.com/hmoodallahma/laravel-blog.git
+$ cd laravel-blog (or the directory you mapped to in your VM)
 $ cp .env.example .env
 $ composer install
 $ vagrant up
@@ -81,19 +80,13 @@ $ artisan migrate --seed
 
 This will create a new user that you can use to sign in :
 ```yml
-email: darthvader@deathstar.ds
-password: 4nak1n
+email: bob@bob.com
+password: bobrules
 ```
 
 And then, compile the assets :
 ```bash
 $ yarn dev # or yarn watch
-```
-
-Starting job for newsletter :
-```bash
-$ artisan tinker
-> PrepareNewsletterSubscriptionEmail::dispatch();
 ```
 
 ## Useful commands
