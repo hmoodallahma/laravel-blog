@@ -13,13 +13,13 @@
 <div class="form-group">
     {!! Form::label('categories', __('posts.attributes.categories')) !!}
     {!! Form::select('categories[]', $categories, [old('categories') ? old('categories') : $post->categories->pluck('id')->toArray()], ['placeholder' => __('posts.placeholder.categories'), 'class' => 'form-control' . ($errors->has('categories') ? ' is-invalid' : ''), 'multiple' => 'multiple']) !!}
-    {!! Form::select('categories[]', $categories, old('categories[]') ? old('categories[]') : $article->categories->pluck('id')->toArray(), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-categories' ]) !!}
+    {!! Form::select('categories[]', $categories, old('categories[]') ? old('categories[]') : $post->categories->pluck('id')->toArray(), ['class' => 'form-control select2', 'multiple' => 'multiple', 'id' => 'selectall-categories' ]) !!}
     @error('categories')
         <span class="invalid-feedback">{{ $message }}</span>
     @enderror
 </div>
 
-<div class="form-group">
+<!-- <div class="form-group">
     {!! Form::label('categories', __('posts.attributes.categories')) !!}
     <select name="categories[]" id="categories" class="selectpicker" multiple>
         @foreach ($categories as $id => $tdrop) 
@@ -30,7 +30,7 @@
             @endif 
         @endforeach
     </select>
-</div>
+</div> -->
 <div class="form-group">
     {!! Form::label('description', __('posts.attributes.description')) !!}
     {!! Form::text('description', null, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'required']) !!}

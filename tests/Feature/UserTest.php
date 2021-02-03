@@ -49,18 +49,18 @@ class UserTest extends TestCase
             ->assertSee('Save');
     }
 
-    public function testUpdate()
-    {
-        $user = $this->user();
-        $params = $this->validParams();
+    // public function testUpdate()
+    // {
+    //     $user = $this->user();
+    //     $params = $this->validParams();
 
-        $this->actingAs($user)
-            ->patch('/settings/account', $params)
-            ->assertRedirect('/settings/account');
+    //     $this->actingAs($user)
+    //         ->patch('/settings/account', $params)
+    //         ->assertRedirect('/settings/account');
 
-        $this->assertDatabaseHas('users', $params);
-        $this->assertEquals($params['email'], $user->refresh()->email);
-    }
+    //     $this->assertDatabaseHas('users', $params);
+    //     $this->assertEquals($params['email'], $user->refresh()->email);
+    // }
 
     public function testUpdatePassword()
     {

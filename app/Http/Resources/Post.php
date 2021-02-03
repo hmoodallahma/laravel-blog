@@ -17,7 +17,7 @@ class Post extends JsonResource
             'slug' => $this->slug,
             'description' => $this->description,
             'content' => $this->content,
-            'posted_at' => $this->posted_at->toIso8601String(),
+            'posted_at' => $this->posted_at ? $this->posted_at->toIso8601String() : '',
             'author_id' => $this->author_id,
             'categories' => Category::collection($this->categories),
             'comments_count' => $this->comments_count ?? $this->comments()->count(),

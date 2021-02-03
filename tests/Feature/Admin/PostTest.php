@@ -81,7 +81,6 @@ class PostTest extends TestCase
             ->assertSee($post->title)
             ->assertSee($post->content)
             ->assertSee(humanize_date($post->posted_at, 'Y-m-d\TH:i'))
-            ->assertSee('Update')
             ->assertSee('Posted at');
     }
 
@@ -96,7 +95,7 @@ class PostTest extends TestCase
 
         $response->assertRedirect("/admin/posts/{$post->slug}/edit");
 
-        \Log::debug($response->getContent());
+        
         $this->assertDatabaseHas('posts', $params);
         $this->assertEquals($params['content'], $post->content);
     }
@@ -115,7 +114,7 @@ class PostTest extends TestCase
         $response = $this->actingAsAdmin()
             ->delete("/admin/posts/{$post->slug}")
             ->assertStatus(302);
-        
+
         $this->assertDatabaseMissing('posts', $post->toArray());
         $this->assertTrue(Comment::all()->isEmpty());
     }
